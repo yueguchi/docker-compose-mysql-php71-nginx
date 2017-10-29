@@ -32,6 +32,11 @@ services:
     image: mysql
     volumes_from:
       - sqldata
+    volumes:
+      - ./mysql/custom.cnf:/etc/mysql/conf.d/custom.conf
     environment:
-      MYSQL_ROOT_PASSWORD: "password"
-      TZ: "Asia/Tokyo"
+      - "MYSQL_DATABASE=todos"
+      - "MYSQL_ROOT_PASSWORD=password"
+      - "TZ=Asia/Tokyo"
+    ports:
+        - "3306:3306"
